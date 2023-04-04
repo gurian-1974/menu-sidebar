@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HEADE | LG</title>
+    <style>
+        :root{
+            --color-blue:blue;
+            --color-blu2:rgb(108, 108, 222);
+            --color-branco:white;
+            --color-black:black;
+            --color-black2:#272727;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background-color:var(--color-black2) ;
+            color: var(--color-branco);
+        }
+        img{
+            margin: 5px;
+            width: 64px;
+            padding: 0;
+            align-items: center;
+        }
+        .header{
+            background-color: var(--color-branco);
+            box-shadow: 2px 2px 8px var(--color-blu2);
+            justify-content: space-around;
+            padding: 0 10%;
+        }
+        .header,.navigatio_header{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+          
+        }
+        .navigatio_header > a{
+            color: var(--color-blu2);
+            text-decoration: none;
+            padding: 7px;
+            transition: 1s;
+            font-weight: bolder;
+            
+        }
+        .navigatio_header > a:hover{
+            color: var(--color-blue);
+        }
+        .active{
+            background-color: var(--color-black2);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .content{
+            text-align: center;
+            padding-top: 3em;
+            height: 80vh;
+            transition: 1s;
+        }
+        .btn_icon_header{
+            display: none;
+            background-color: transparent;
+            border: none;
+            width: 20px;
+
+        }
+        @media screen and (max-width: 768px){
+            .btn_icon_header{
+                display: block;
+            }
+            .navigatio_header{
+                position: absolute;
+                flex-direction: column;
+                top: 0;
+                background-color: rgba(87, 87, 232, 0.932);
+                height: 100%;
+                width: 35vw;
+                padding: 1em;
+                animation-duration: 1s;
+                margin-left: -140vw;
+                justify-content: space-around;
+               
+                
+            }
+            .navigatio_header > a{
+                color: var(--color-branco);
+            }
+
+        }
+        @keyframes showSiderbar {
+            from{margin-left: -140vw;}
+            top{margin-left: -58vw;}
+            
+        }
+    </style>
+</head>
+<body onresize="mudoTamanho()">
+    <div class="header" id="header">
+        <button onclick="toggleSidebar()" class="btn_icon_header">
+            <ion-icon name="reorder-four-outline"></ion-icon>
+        </button>
+
+        <div class="logo_header">
+            <img src="phplogo.jpg" alt="">
+        </div>
+        <div class="navigatio_header" id="navigatio_header">
+            <button onclick="toggleSidebar()"class="btn_icon_header">
+                <ion-icon name="close-circle-outline"></ion-icon>
+            </button>
+            <a href="#">Home</a>
+            <a href="#">Cursos</a>
+            <a href="#">Sobre nos</a>
+            <a href="#">Contato</a>
+        </div>
+
+    </div>
+    <div tabindex = "0" onclick = "closeSidebar()" class="content" id="content">
+        <br>
+        <br>
+        <h1> Menu responsivo Luciano Gurian</h1>
+    </div>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>    
+</body>
+    <script>
+        var header = document.getElementById('header');
+        var naviheader = document.getElementById("navigatio_header");
+        var content = document.getElementById('content');
+        var showSidebar = false;
+
+        function toggleSidebar()
+        {
+            showSidebar = !showSidebar;
+            if(showSidebar)
+           {
+                naviheader.style.marginLeft = '-58vw';
+                naviheader.style.animationName = 'showSidebar';
+
+           }
+           else{
+
+            naviheader.style.marginLeft = '-140vw';
+           }
+
+                }
+
+    function closeSidebar(){
+
+        if(showSidebar){
+
+            toggleSidebar();
+        }
+
+        window.addEventListener('resize',function(event){
+            if(window.innerWidth > 768 && showSidebar){
+                toggleSidebar();
+            }
+        });
+    }
+    function mudoTamanho(){
+        if(window.innerWidth >= 768){
+          itens.style.display="none"  
+        }else{
+            itens.style.display="block"
+        }
+    }
+    </script>
+</html>
